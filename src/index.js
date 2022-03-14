@@ -2,8 +2,12 @@ import './style.css';
 import { SVG } from "@svgdotjs/svg.js";
 import { random } from "@georgedoescode/generative-utils";
 import colors from 'nice-color-palettes';
+import tinycolor from 'tinycolor2';
+import gsap from 'gsap';
+import shapes from './shapes'
+import { squareSize } from './config';
 
-let numRows, numCols, draw, squareSize, palette;
+let numRows, numCols, draw, palette;
 
 function generateGrid() {
   // Remove SVG
@@ -13,9 +17,21 @@ function generateGrid() {
 
 function renderGrid() {
   palette = random(colors);
-  squareSize = 30;
   numRows = random(4, 8, true);
   numCols = random(4, 8, true);
+
+  const bg = tinycolor
+    .mix(palette[0], palette[2], 50)
+    .desaturate(10)
+    .toString();
+
+  const bgInner = tinycolor(bg).lighten(10);
+  const bgOuter = tinycolor(bg).darken(10);
+
+  gsap.to(".container", {
+    "background-image": `radial-gradient(${bgInner} 0%, ${bgOuter} 100%)`,
+    duration: 0.5,
+  })
 
   draw = SVG()
     .addTo(".container")
@@ -33,18 +49,20 @@ function generateBlock(i, j) {
   const x = i * squareSize;
   const y = j * squareSize;
 
-  renderBlock(x, y);
+  const shape = random(shapes);
+
+  const { background, foreground } = getTwoRandomColors();
+
+  shape(draw, x, y, background, foreground);
 }
 
-function renderBlock(x, y) {
+function getTwoRandomColors() {
+  const colors = [...palette];
 
-  // Create group element
-  const group = draw.group().addClass("draw-block");
+  const backgroundIndex = random(0, palette.length - 1, true);
+  colors.splice(backgroundIndex, 1);
 
-  const background = random(palette);
-
-  // Draw Square
-  group.rect(squareSize, squareSize).fill(background).move(x, y);
+  return { background: palette[backgroundIndex], foreground: random(colors) };
 }
 
 function init() {

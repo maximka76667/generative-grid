@@ -7,6 +7,8 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
+    shapes: './src/shapes.js',
+    config: './src/config.js',
   },
   devtool: 'inline-source-map',
   devServer: {

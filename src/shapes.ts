@@ -1,7 +1,7 @@
 import { squareSize } from './config';
-import { random } from "@georgedoescode/generative-utils";
+const { random } = require("@georgedoescode/generative-utils");
 
-function renderBlock(draw, x, y, background, foreground) {
+function renderBlock(draw: any, x: number, y: number, background: string, foreground: string) {
 
   // Create group element
   const group = draw.group().addClass("block");
@@ -10,7 +10,7 @@ function renderBlock(draw, x, y, background, foreground) {
   group.rect(squareSize, squareSize).fill(background).move(x, y);
 }
 
-function renderCircle(draw, x, y, background, foreground) {
+function renderCircle(draw: any, x: number, y: number, background: string, foreground: string) {
   // Create group element
   const group = draw.group().addClass("circle");
 
@@ -26,7 +26,7 @@ function renderCircle(draw, x, y, background, foreground) {
   }
 }
 
-function renderOppositeCircles(draw, x, y, background, foreground) {
+function renderOppositeCircles(draw: any, x: number, y: number, background: string, foreground: string) {
   const group = draw.group().addClass("opposite-circles");
 
   group.rect(squareSize, squareSize).fill(background).move(x, y);

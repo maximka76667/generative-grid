@@ -1,13 +1,13 @@
-import './style.css';
+import './style.sass';
 import { SVG } from "@svgdotjs/svg.js";
-import { random } from "@georgedoescode/generative-utils";
-import colors from 'nice-color-palettes';
-import tinycolor from 'tinycolor2';
+const { random } = require("@georgedoescode/generative-utils");
+const colors = require('nice-color-palettes');
+const tinycolor = require('tinycolor2');
 import gsap from 'gsap';
 import shapes from './shapes'
 import { squareSize } from './config';
 
-let numRows, numCols, draw, palette;
+let numRows, numCols, draw: any, palette: string[][];
 
 function generateGrid() {
   // Remove SVG
@@ -45,7 +45,7 @@ function renderGrid() {
   }
 }
 
-function generateBlock(i, j) {
+function generateBlock(i: number, j: number) {
   const x = i * squareSize;
   const y = j * squareSize;
 

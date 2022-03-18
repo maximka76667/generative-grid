@@ -1,7 +1,7 @@
 {
   "name": "generative-grid",
   "version": "1.0.0",
-  "description": "Random grids generator",
+  "description": "Random grid generator",
   "private": true,
   "homepage": "maximka76667.github.io/generative-grid",
   "scripts": {

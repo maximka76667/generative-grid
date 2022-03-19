@@ -47,7 +47,29 @@ function renderOppositeCircles(draw: any, x: number, y: number, background: stri
   group.add(circleGroup);
 }
 
+function renderPlus(draw: any, x: number, y: number, background: string, foreground: string) {
+  const group = draw.group().addClass('plus');
+
+  group.rect(squareSize, squareSize).fill(background).move(x, y);
+
+  const xScale = random(0.5, 1);
+  const yScale = 0.2;
+
+  const xMargin = (1 - xScale) / 2;
+  const yMargin = (1 - yScale) / 2;
+
+  const cross = draw.group();
+
+  cross.rect(squareSize * yScale, squareSize * xScale).fill(foreground).move(x + squareSize * yMargin, y + squareSize * xMargin);
+ cross.rect(squareSize * xScale, squareSize * yScale).fill(foreground).move(x + squareSize * xMargin, y + squareSize * yMargin);
+
+  if (random([0, 1])) {
+    cross.rotate(45);
+  }
+}
+
 export default [
   renderCircle,
   renderOppositeCircles,
+  renderPlus
 ];

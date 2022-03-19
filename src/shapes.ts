@@ -61,7 +61,7 @@ function renderPlus(draw: any, x: number, y: number, background: string, foregro
   const cross = draw.group();
 
   cross.rect(squareSize * yScale, squareSize * xScale).fill(foreground).move(x + squareSize * yMargin, y + squareSize * xMargin);
- cross.rect(squareSize * xScale, squareSize * yScale).fill(foreground).move(x + squareSize * xMargin, y + squareSize * yMargin);
+  cross.rect(squareSize * xScale, squareSize * yScale).fill(foreground).move(x + squareSize * xMargin, y + squareSize * yMargin);
 
   if (random([0, 1])) {
     cross.rotate(45);
